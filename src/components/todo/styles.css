@@ -1,0 +1,125 @@
+.todos,
+.todos-list,
+.todos-add {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+}
+
+.todos-add {
+    gap: .5rem;
+}
+
+.todos-list {
+    gap: 1rem;
+}
+
+.todo {
+    width: 100%;
+    max-width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.todo-delete {
+    --size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--size);
+    min-height: var(--size);
+    width: var(--size);
+    height: var(--size);
+}
+
+.todo-delete > svg {
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: white;
+}
+
+.todo-title {
+    position: relative;
+    margin-right: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity .1s ease-in-out;
+}
+
+.todo-title::after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: black;
+    opacity: 0;
+    transition: opacity .1s ease-in-out;
+}
+
+.todo-tick {
+    --size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--size);
+    min-height: var(--size);
+    width: var(--size);
+    height: var(--size);
+    border: 1px solid black;
+    border-radius: 5px;
+
+}
+
+.todo-tick>svg {
+    stroke: 1px;
+    opacity: 0;
+    transition: opacity .1s ease-in-out;
+}
+
+.todo.completed .todo-title {
+    opacity: .5;
+}
+
+.todo.completed .todo-title::after {
+    opacity: 1;
+}
+
+.todo.completed>.todo-tick>svg {
+    opacity: 1;
+}
+
+.todos-filters {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+.todos-filter {
+    position: relative;
+}
+
+.todos-filter::after {
+    position: absolute;
+    content: '';
+    top: calc(100% + 2px);
+    left: -2px;
+    right: -2px;
+    height: 1px;
+    opacity: 0;
+    background-color: black;
+    transition: opacity .1s ease-in-out;
+}
+
+.todos-filter.active::after {
+    opacity: 1;
+}
