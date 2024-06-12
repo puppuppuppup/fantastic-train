@@ -105,7 +105,6 @@ it('Todos counter', () => {
 
     addTodos(TODO_COUNT);
     clickTodos(TODO_COUNT_CLICKED);
-    const todos = document.querySelectorAll('.todo');
 
     const counter = screen.getByText(/item\(-s\) left/);
     const todosCounted = +String(counter.textContent).split(' ')[0];
