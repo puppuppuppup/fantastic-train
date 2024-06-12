@@ -103,14 +103,12 @@ it('Todos counter', () => {
     const TODO_COUNT = 5;
     const TODO_COUNT_CLICKED = 4;
 
-    act(() => {
-        addTodos(TODO_COUNT);
-        clickTodos(TODO_COUNT_CLICKED);
+    addTodos(TODO_COUNT);
+    clickTodos(TODO_COUNT_CLICKED);
+    const todos = document.querySelectorAll('.todo');
 
-        const counter = screen.getByText(/item\(-s\) left/);
-        const todosCounted = +String(counter.textContent).split(' ')[0];
-        const todos = document.querySelectorAll('.todo');
+    const counter = screen.getByText(/item\(-s\) left/);
+    const todosCounted = +String(counter.textContent).split(' ')[0];
 
-        expect(todos).toHaveLength(todosCounted);
-    });
+    expect(todosCounted).toEqual(TODO_COUNT - TODO_COUNT_CLICKED);
 });
