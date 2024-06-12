@@ -101,7 +101,8 @@
 .todos-filters {
     display: flex;
     align-items: flex-end;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .todos-filter {

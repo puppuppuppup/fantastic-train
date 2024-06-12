@@ -1,11 +1,11 @@
 import { useState } from 'react';
+import { TodoFilter } from '../../const/filters';
 import { useTodos } from '../../hooks/useTodos';
 import { Button } from '../ui/Button/Button';
 import { Input } from '../ui/Input/Input';
 import './styles.css';
+import { TodosFilters } from './TodoFilters';
 import { TodosList } from './TodosList';
-
-type TodoFilter = 'all' | 'completed' | 'active';
 
 export const Todos = () => {
     const {
@@ -28,7 +28,10 @@ export const Todos = () => {
         addTodo(todoName);
     };
 
-    const onChangeFilter = (type: TodoFilter) => {
+    const onFilterChange = (type: TodoFilter) => {
+        if (type === filter) {
+            return;
+        }
         setFilter(type);
     };
 
@@ -44,26 +47,7 @@ export const Todos = () => {
                 <Button onClick={onAddTodo}>Add todo</Button>
                 <Button onClick={deleteCompletedTodos}>Delete completed</Button>
             </div>
-            <div className='todos-filters'>
-                <button
-                    onClick={() => onChangeFilter('all')}
-                    className={`todos-filter ${filter === 'all' ? 'active' : ''}`}
-                >
-                    All
-                </button>
-                <button
-                    onClick={() => onChangeFilter('completed')}
-                    className={`todos-filter ${filter === 'completed' ? 'active' : ''}`}
-                >
-                    Completed
-                </button>
-                <button
-                    onClick={() => onChangeFilter('active')}
-                    className={`todos-filter ${filter === 'active' ? 'active' : ''}`}
-                >
-                    Active
-                </button>
-            </div>
+            <TodosFilters currentFilter={filter} onFilterChange={onFilterChange} />
             <TodosList
                 todos={
                     filter === 'active'
